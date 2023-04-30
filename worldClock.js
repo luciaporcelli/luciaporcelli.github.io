@@ -5,7 +5,7 @@ fetch(url)
 	.then(data => {
 		let countries = [];
 		data.forEach(timezone => {
-            if (/04:20$|04:20:/.test(timezone)) {
+			if (/04:20$|04:20:/.test(timezone)) {
 				let country = timezone.split("/")[0];
 				if (!countries.includes(country)) {
 					countries.push(country);
@@ -13,10 +13,11 @@ fetch(url)
 			}
 		});
 		let worldClock = document.getElementById("world-clock");
-		worldClock.innerHTML = countries.join(", ");
-        } else {
-            worldClock.innerHTML = "No, pero podes fumar igual";
-        }
-    })
+		if (countries.length > 0) {
+			worldClock.innerHTML = "Son las 4:20 en " + countries.join(", ");
+		} else {
+			worldClock.innerHTML = "No, pero podes fumar igual";
+		}
 	})
 	.catch(error => console.log(error));
+
